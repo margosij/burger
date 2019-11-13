@@ -1,15 +1,11 @@
 //set up code to connect node to MySQL
 var express = require("express")
 var mysql = require("mysql")
-var keys = require("./keys.js")
-
-var app = express()
-
-var PORT = process.env.PORT || 8080
+var keys = require("../keys")
 
 var connection = mysql.createConnection({
     host: "localhost",
-    port: 8080,
+    port: 3306,
     user: keys.mysql.user,
     password: keys.mysql.password,
     database: "burgers_db"
@@ -21,10 +17,6 @@ var connection = mysql.createConnection({
       return;
     }
     console.log("connected as id " + connection.threadId);
-  });
-
-app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
   });
 
 module.exports = connection
