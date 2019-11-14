@@ -2,11 +2,23 @@
 
 <h2>Burgers that still need to be eaten!</h2>
 
-
+<ul>
+  {{#each burgers}}
+    {{#unless devoured}}
+      <div class="false">{{this.burger_name}}</div>
+    {{/unless}}
+  {{/each}}
+</ul>
 
 <h2>Burger devoured!</h2>
 
-
+<ul>
+  {{#each burgers}}
+    {{#if devoured}}
+      <div class="consumed">{{this.burger_name}}</div>
+    {{/if}}
+  {{/each}}
+</ul>
 
 <h2>Add Burger</h2>
 <form class="create-form">
@@ -15,12 +27,6 @@
     <label for="ca">Burger:</label>
     <input type="text" id="ca" name="name">
   </div>
-
-  {{!-- <div class="form-group">
-    <label for="sleepy">Sleepy?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
-  </div> --}}
 
   <button type="submit">Add Burger</button>
 </form>
