@@ -3,15 +3,16 @@ var router = express.Router()
 var burgerSetup = require("../models/burger.js")
 
 router.get("/", function(req, res){
-    console.log("balls are here on router")
-    console.log(burgerSetup)
+    // console.log(burgerSetup)
     burgerSetup.selectAll(function(data){
-        console.log(data, "data")
+        // console.log(data, "data")
         var object = {
             burgers: data
         }
-        console.log(object)
-        res.render("index", {burgers: data}, function (err, html){console.log(err, "burgercontroller  line 14")})
+        // console.log(object)
+        res.render("index", {burgers: data} 
+        // function (err, html){console.log(err, "burgercontroller  line 13")}
+        )
     })
     // res.send("Hello World")
 })
@@ -48,7 +49,7 @@ router.get("/", function(req, res){
 // router.delete("/", function(req, res) {
 //     var condition = "id = " + req.params.id;
   
-//     cat.delete(condition, function(result) {
+//     burger.delete(condition, function(result) {
 //       if (result.affectedRows == 0) {
 //         return res.status(404).end();
 //       } else {
