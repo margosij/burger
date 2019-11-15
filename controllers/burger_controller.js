@@ -18,18 +18,17 @@ router.post("/burgers/create", function(req, res){
     burgerSetup.insertOne([
         "burger_name"
     ], [
-        req.body.burger_name
+        req.body.name
     ], function(result){
         res.json({ id: result.insertID})
     }
-
     )
+    console.log(req.body, "rek that body")
 })
 
 router.put("/burgers/:id", function(req, res){
-    var condition = "id = " + req.params.id
-
-    console.log("condition", condition)
+    var condition = "id = " + req.params.name
+    console.log(condition, "condition")
 
     burgerSetup.updateOne({
         devoured: req.body.devoured
