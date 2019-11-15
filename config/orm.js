@@ -26,7 +26,7 @@ var orm = {
     selectAll: function(tableInput, cb){
         var queryString = "SELECT * FROM " + tableInput + ";";
         // console.log(tableInput, "table")
-        console.log(queryString, "query")
+        // console.log(queryString, "query")
         connection.query(queryString, function(err, result){
             // console.log(connection, "connection")
             if (err){
@@ -45,7 +45,7 @@ var orm = {
         queryString += printQuestionMarks(vals.length)
         queryString += ") "
 
-        console.log(queryString)
+        console.log(cols, "added")
 
         connection.query(queryString, vals, function(err, result){
             if (err) {
@@ -62,7 +62,7 @@ var orm = {
         queryString += " WHERE "
         queryString += condition
 
-        console.log(queryString)
+        console.log(queryString, "updated")
         connection.query(queryString, function(err, result){
             if (err){
                 throw err

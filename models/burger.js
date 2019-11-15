@@ -10,7 +10,7 @@ var burgerSetup = {
         })
     },
     insertOne: function(cols, vals, cb){
-        orm.inserOne("burgers", cols, vals, function(res){
+        orm.insertOne("burgers", cols, vals, function(res){
             cb(res)
         })
     },
