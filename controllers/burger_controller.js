@@ -23,15 +23,17 @@ router.post("/burgers/create", function(req, res){
         res.json({ id: result.insertID})
     }
     )
-    console.log(req.body, "rek that body")
+    // console.log(req.body, "rek that body")
 })
 
 router.put("/burgers/:id", function(req, res){
-    var condition = "id = " + req.params.name
-    console.log(condition, "condition")
-
+    console.log(req.body, "req burger_controller line 30")
+    var condition = "id = " + req.params.id
+    console.log(req.params, "params console")
+    // console.log(condition, "condition")
+    //need to switch devoured to console 1 instad of false
     burgerSetup.updateOne({
-        devoured: req.body.devoured
+        devoured: 1
     }, condition, function(result) {
         if (result.changedRows == 0){
             return res.status(404).end()

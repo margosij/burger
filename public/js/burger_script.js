@@ -1,14 +1,16 @@
 $(document).ready(function() {
-    $(".dev-burger").on("click", function(event) {
-      var id = $(this).data("devourburger");
-      // console.log($(".dev-burger"))
+    $(".change-devour").on("click", function(event) {
+      var id = $(this).data("id");
+      console.log($(this), "id test")
       var newDevour = $(this).data("newdevour");
   
       var newFoodStatus = {
         devoured: newDevour
       };
-
-      $.ajax("/burgers" + id, {
+      var urlLink = "/burgers/" + id
+      $.ajax(
+        urlLink, 
+        {
         type: "PUT",
         data: newFoodStatus
       }).then(

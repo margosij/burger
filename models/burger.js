@@ -5,7 +5,7 @@ var burgerSetup = {
     selectAll: function(cb){
         // console.log("select erythang")
         orm.selectAll("burgers", function(res){
-            console.log(res, "res")
+            // console.log(res, "res")
             cb(res)
         })
     },
