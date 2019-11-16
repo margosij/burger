@@ -1,11 +1,9 @@
 var orm = require("../config/orm.js")
-//creat code that will call ORM functions using burger specific input for the ORM
 
 var burgerSetup = {
     selectAll: function(cb){
-        // console.log("select erythang")
+
         orm.selectAll("burgers", function(res){
-            // console.log(res, "res")
             cb(res)
         })
     },

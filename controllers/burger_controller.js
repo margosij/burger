@@ -7,9 +7,7 @@ router.get("/", function(req, res){
         var object = {
             burgers: data
         }
-        // console.log(object)
         res.render("index", {burgers: data}
-        // function (err, html){console.log(err, "burgercontroller  line 13")}
         )
     })
 })
@@ -23,14 +21,11 @@ router.post("/burgers/create", function(req, res){
         res.json({ id: result.insertID})
     }
     )
-    // console.log(req.body, "rek that body")
+
 })
 
 router.put("/burgers/:id", function(req, res){
-    console.log(req.body, "req burger_controller line 30")
     var condition = "id = " + req.params.id
-    console.log(req.params, "params console")
-    // console.log(condition, "condition")
     //need to switch devoured to console 1 instad of false
     burgerSetup.updateOne({
         devoured: 1

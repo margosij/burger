@@ -1,10 +1,10 @@
 var connection = require("./connection.js")
 
 
-function printQuestionMarks(num){
+function printQuestionMarks(num) {
     var arr = []
 
-    for (var i=0; i<num; i++){
+    for (var i = 0; i < num; i++) {
         arr.push("?")
     }
     return arr.toString()
@@ -12,40 +12,35 @@ function printQuestionMarks(num){
 
 function objToSql(ob) {
     var arr = [];
-  
+
     // loop through the keys and push the key/value as a string int arr
     for (var key in ob) {
-      var value = ob[key];
-      // check to skip hidden properties
-      if (Object.hasOwnProperty.call(ob, key)) {
-        // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
-        if (typeof value === "string" && value.indexOf(" ") >= 0) {
-          value = "'" + value + "'";
+        var value = ob[key];
+        // check to skip hidden properties
+        if (Object.hasOwnProperty.call(ob, key)) {
+            // if string with spaces, add quotations
+            if (typeof value === "string" && value.indexOf(" ") >= 0) {
+                value = "'" + value + "'";
+            }
+            arr.push(key + "=" + value);
         }
-        // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-        // e.g. {sleepy: true} => ["sleepy=true"]
-        arr.push(key + "=" + value);
-      }
     }
-  
+
     // translate array of strings to a single comma-separated string
     return arr.toString();
-  }
+}
 
 var orm = {
-    selectAll: function(tableInput, cb){
+    selectAll: function (tableInput, cb) {
         var queryString = "SELECT * FROM " + tableInput + ";";
-        // console.log(tableInput, "table")
-        // console.log(queryString, "query")
-        connection.query(queryString, function(err, result){
-            // console.log(connection, "connection")
-            if (err){
+        connection.query(queryString, function (err, result) {
+            if (err) {
                 throw err
             }
             cb(result)
         })
     },
-    insertOne: function(table, cols, vals, cb){
+    insertOne: function (table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table
 
         queryString += " ("
@@ -55,16 +50,14 @@ var orm = {
         queryString += printQuestionMarks(vals.length)
         queryString += ") "
 
-        console.log(cols, "added")
-
-        connection.query(queryString, vals, function(err, result){
+        connection.query(queryString, vals, function (err, result) {
             if (err) {
                 throw err
             }
             cb(result)
         })
     },
-    updateOne: function(table, objColVals, condition, cb){
+    updateOne: function (table, objColVals, condition, cb) {
         var queryString = "UPDATE " + table
 
         queryString += " SET "
@@ -72,25 +65,24 @@ var orm = {
         queryString += " WHERE "
         queryString += condition
 
-        console.log(queryString, "updated")
-        connection.query(queryString, function(err, result){
-            if (err){
+        connection.query(queryString, function (err, result) {
+            if (err) {
                 throw err
             }
             cb(result)
         })
     },
-    delete: function(table, condition, cb) {
+    delete: function (table, condition, cb) {
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE ";
         queryString += condition;
-    
-        connection.query(queryString, function(err, result) {
-          if (err) {
-            throw err;
-          }
-    
-          cb(result);
+
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
+
+            cb(result);
         });
     }
 }
