@@ -1,6 +1,6 @@
 # burger
 
-Here's the link to the [GitHub] (https://margosij.github.io/burger/) page!
+Here's the link to the [Heroku] (https://burger-eater-jm.herokuapp.com/) page!
 
 I tried to have a folder for each section of the app, so there are quite a few different folders for this one.
 
