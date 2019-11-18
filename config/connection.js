@@ -1,13 +1,13 @@
 //set up code to connect node to MySQL
 var express = require("express")
 var mysql = require("mysql")
-var keys = require("../keys")
+var keys = process.env.NODE_ENV === 'production' ? null : require("../keys")
 
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
-    user: keys.mysql.user,
-    password: keys.mysql.password,
+    user: keys && keys.mysql.user || process.env.user,
+    password: keys && keys.mysql.password || process.env.password,
     database: "burgers_db"
   });
 
