@@ -6,8 +6,8 @@ var keys = process.env.NODE_ENV === 'production' ? null : require("../keys")
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
-    user: keys && keys.mysql.user || process.env.user,
-    password: keys && keys.mysql.password || process.env.password,
+    user: keys && keys.mysql.user,
+    password: keys && keys.mysql.password,
     database: "burgers_db"
   });
 
